@@ -8,7 +8,7 @@ conn = Connection(
     host="localhost",            # 主机名（IP）
     port=3306,                   # 端口
     user="root",                 # 账户
-    password="xstlove346@",      # 密码
+    password="123456",           # 密码
     autocommit=True              # 自动提交（确认）
 )
 
@@ -22,4 +22,5 @@ cursor.execute("insert into student values(10001, '周杰伦', 31, '男')")
 # # 通关commit确认
 # conn.commit()
 # 关闭链接
+
 conn.close()
