@@ -44,16 +44,20 @@ vim 文件路径
 ```
 
 ## root用户
-1. [root用户]:Linux系统的超级管理员用户是
-
+1. [root用户]:
+```bash
+Linux系统的超级管理员用户
+```
 2. su命令
+```bash
 su [-] [用户名] 可以切换用户
 [语法]:
 `-`:表示切换后加载环境变量，建议带上
 `用户`:可以省略，省略默认切换到root
 切换用户后，可以通过`exit`命令退回上一个用户,也可以使用快捷键:`ctrl+d`
-
+```
 3. sudo命令
+```bash
 可以让一条普通命令带有root权限
 [语法]:
 sudo 其它命令
@@ -64,17 +68,21 @@ sudo 其它命令
     `NOPASSWD`:ALL表示使用sudo命令，无需输入密码最后通过 wq 保存
     切换回普通用户
     执行的命令，均以root运行
+```
 
 ## 管理
 ### 用户组管理
 以下命令需root用户执行
+```bash
 1. 创建用户组
 `groupadd 用户组名`
 2. 删除用户组
 `groupdel 用户组名`
+```
 
 ### 用户管理
 以下命令需root用户执行
+```bash
 1. 创建用户
 `useradd [-g -d] 用户名`
 · 选项:`-g`指定用户的组，不使用-g，会创建同名组并自动加入，指定-g需要组已经存在，如已存在同名组，必须使用-g
@@ -93,40 +101,46 @@ sudo 其它命令
 
 4. 修改用户所属组
 `usermod -aG 用户组 用户名`  将指定用户加入指定用户组
+```
 
 ### getent
 1. 可以查看当前系统中有哪些[用户]
+```bash
 [语法]:
 getent passwd
 
 [itheima@localhost ~]$ getent passwd  
 root :x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/bin:/sbin/nologin
+```
 
 共有7份信息，分别是:
 用户名:密码(x):用户ID:组ID:描述信息(无用):HOME目录:执行终端(默认bash)
 
 2. 可以查看当前系统中有哪些[用户组]
+```bash
 [语法]:
 getent group
 
 [itheima@localhost ~]$ getent group
 root:x:0:
 bin:x:1:
-
+```
 包含3份信息:
 组名称:组认证(显示为x):组ID
 
 ## 权限
 1. `ls -l` 列出的权限信息如何解读
-iitheimadlocalhosi
+```bash
 总用量
 drwxr-xr-x. 3 itheima1 itheima2 37 9月  23 03:17  Desktop
 drwxr-xr-x:表示文件、文件夹的权限控制信息
 itheima1:表示文件、文件夹所属用户
 itheima2:表示文件、文件夹所属用户组
+```
 
 2. 权限细节如何解读
+```bash
 drwxr-xr-x
 **-或d或l**
  -:表示文件
@@ -151,8 +165,10 @@ drwxr-xr-x，表示:
     3.所属用户组的权限是:有r无w有x，r-x(-表示无此权限)
     4.好对于这个序号1的话呢
     5.其它用户的权限是: 有r无w有x，r-x
+```
 
 3. rwx分别代表什么
+```bash
 r表示读权限
 w表示写权限
 x表示执行权限
@@ -162,10 +178,12 @@ x表示执行权限
     针对文件夹，可以在文件夹内:创建、删除、改名等操作
 [x]:针对文件表示可以将文件作为程序执行
     针对文件夹，表示可以更改工作目录到此文件夹，即cd进入
+```
 
 ## chmod命令
 1. 我们可以使用chmod命令,修改文件、文件夹的权限信息
 **注意**
+```bash
 只有文件、文件夹的所属用户或root用户可以修改。
 [语法]: chmod [-R] 权限 文件或文件夹
 · 选项:`-R`,对文件夹内的全部内容应用同样的操作
@@ -173,23 +191,30 @@ x表示执行权限
 `chmod u=rwx,g=rx,o=x hello.txt`,将文件权限修改为: rwxr-x--x
 其中:u表示user所属用户权限，g表示group组权限,o表示other其它用户权限
 `chmod -R u=rwx,g=rx,o=x test`,将文件夹test以及文件夹内全部内容权限设置为: rwxr-x--x
+```
 2. 权限的数字序号
+```bash
  r代表4,w代表2,x代表1
  rwx的相互组合可以得到从0到7的8种权限组合
  如7代表:rwx，5代表:r-x,1代表:--X
+```
 
 ## chown命令
 使用chown命令，可以修改文件、文件夹的所属用户和用户组
 `普通用户无法修改所属为其它用户或组，所以此命令只适用于root用户执行`
+```bash
 **语法**:
 chown [-R] [用户][:][用户组] 文件或文件夹
 选项，`-R`，同chmod,对文件夹内全部内容应用相同规则
 选项，`用户`，修改所属用户
 选项，`用户组`，修改所属用户组
 `:`用于分隔用户和用户组
+
 **示例:**
 chown root hello.txt,将hello.txt所属用户修改为root中
 chown :root hello.txt,将hello.txt所属用户组修改为root
 chown root:itheima hello.txt,将hello.txt所属用户修改为root,用户组修改为itheima
 
 chown -Rroottest,将文件夹test的所属用户修改为root并对文件夹内全部内容应用同样规则
+```
+
