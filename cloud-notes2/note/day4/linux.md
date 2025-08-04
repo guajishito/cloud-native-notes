@@ -51,6 +51,7 @@ ln -s /etc/yum ~/yum
     %M 分钟(00.59)
     %S 秒(00.60)
     %s 自1970-01-0100:00:00UTC 到现在的秒数
+```bash
 **示例：**
 date                                # 使用date命令本体,无选项，直接查看时间
 2022年10月08日 星期六 00:45:45 PDT
@@ -70,6 +71,7 @@ date -d "-1 month" +%Y%m%d           # 显示上一月的日期
     hour    小时
     Minute  分 钟
     second  秒
+```
 
 ## 修改Linux时区
 使用root权限,执行如下命令,修改时区为东八区时区
@@ -89,4 +91,5 @@ sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```bash
 ntpdate -untp.aliyun.com
 ```
+
 通过阿里云提供的服务网址配合ntpdate(安装ntp后会附带这个命令)命令自动校准
