@@ -26,9 +26,10 @@ conn = Connection(
     host="localhost",            # 主机名（IP）
     port=3306,                   # 端口
     user="root",                 # 账户
-    password="xstlove346@",      # 密码
+    password="123456",           # 密码
     autocommit=True              # 自动提交（确认）
 )
 ```
+
 
 
