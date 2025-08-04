@@ -8,7 +8,7 @@ conn = Connection(
     host="localhost",           # 主机名(IP)
     port=3306,                  # 端口
     user="root",                # 账户
-    password="xstlove346@"      # 密码
+    password="123456"           # 密码
 
 )
 
@@ -29,4 +29,5 @@ results = cursor.fetchall()
 for r in results:
     print(r)
 # 关闭链接
+
 conn.close()
