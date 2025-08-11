@@ -1,0 +1,23 @@
+"""
+演示Python 调用Linux的基本操作
+"""
+# 导入子进程模块，用于执行外部命令
+from subprocess import run
+
+# 安全执行Linux命令并捕获输出
+result = run(
+    ["ls", "-l"],            # 命令列表
+    capture_output=True,     # 捕获命令输出
+    text=True                # 以文本形式返回结果
+)
+
+# 类比：这相当于在终端输入 `ls -l`，然后把屏幕显示的内容存到变量里
+print(result.stdout)        # 打印命令的标准输出（即文件列表）
+
+# # 危险示范（不要这样做！）
+# user_input = "echo hello; rm -rf /"     # 恶意用户输入
+# run(user_input, shell=True)             # shell=True允许执行多条命令，极度危险！
+
+# 正确做法：使用列表传参 + 禁用shell
+safe_cmd = ["echo", "hello"]
+run(safe_cmd, shell=False)
